@@ -109,10 +109,6 @@ impl WindowAdapterInternal for HeadlessWindow {
     fn input_method_request(&self, request: i_slint_core::window::InputMethodRequest) {
         self.ime_requests.borrow_mut().push(request)
     }
-
-    fn set_mouse_cursor(&self, cursor: i_slint_core::items::MouseCursor) {
-        self.mouse_cursor.set(cursor);
-    }
 }
 
 impl WindowAdapter for HeadlessWindow {
@@ -144,6 +140,10 @@ impl WindowAdapter for HeadlessWindow {
             let c = properties.layout_constraints();
             self.size.set(c.preferred.to_physical(self.window.scale_factor()));
         }
+    }
+
+    fn set_mouse_cursor(&self, cursor: i_slint_core::items::MouseCursor) {
+        self.mouse_cursor.set(cursor);
     }
 
     fn internal(&self, _: i_slint_core::InternalToken) -> Option<&dyn WindowAdapterInternal> {

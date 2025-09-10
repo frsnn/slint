@@ -249,9 +249,7 @@ impl Item for DropArea {
                 let r = Self::FIELD_OFFSETS.can_drop.apply_pin(self).call(&(event.clone(),));
                 if r {
                     self.contains_drag.set(true);
-                    if let Some(window_adapter) = window_adapter.internal(crate::InternalToken) {
-                        window_adapter.set_mouse_cursor(MouseCursor::Copy);
-                    }
+                    window_adapter.set_mouse_cursor(MouseCursor::Copy);
                     InputEventResult::EventAccepted
                 } else {
                     self.contains_drag.set(false);
